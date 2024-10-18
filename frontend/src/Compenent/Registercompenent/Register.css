@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+    
+  }
+  .text-center{
+    position: relative;
+    top: 10px;
+  }
+ .card{
+  position: relative;
+  top: 70px;
+ }
+ .line{
+  width :50%;
+  height: 3px;
+  margin: 0 25% 0 25%;
+  background: linear-gradient(to right, #dd1439, #d8363a, #dd3675, #830928);
+  border: none;
+  
+ }
+ 
+ #button{
+  background-color: #d81344;
+ }
