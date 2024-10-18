@@ -1,0 +1,56 @@
+nav{
+    display: flex;
+    gap: 20px;
+    height: 40px;
+    justify-content: center;
+    background-color: #95072bc1;
+    /* background: linear-gradient(to right, #de4e68, #d8363a, #dd3675, #830928); */
+}
+.navbar{
+    justify-content: space-between; 
+}
+
+
+.nav-link{
+    position: relative;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    padding: 0.5rem 1rem;
+    transition: color 0.25s;
+    
+}
+.nav-link::after{
+    position: absolute;
+    content: "";
+    inset: 0;
+    background: white;
+    scale: 1 0;
+    z-index: -1;
+    transition: 0.45s;
+    border-radius: 10px;
+}
+.nav-link:hover{
+    color: black;   
+}
+.nav-link:hover::after{
+    scale: 1 1;
+}
+#card{
+    position: relative;
+    top: -90px;
+}
+
+.animated-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+}
+
+.animated-card:hover {
+    transform: scale(1.05); /* Scale up the card slightly */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+#footer{
+    background-color: black;
+    color:white;
+    text-align: center;
+}
