@@ -2,6 +2,8 @@ import React,{useEffect, useState}  from 'react';
 import { Link,useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Modal, Button } from 'react-bootstrap';
+
  const Ajouter = () => {
 
     //connect to my REST API to create a participant
@@ -25,7 +27,8 @@ import { toast } from 'react-toastify';
     const[choix,setChoix]=useState([]);
      //convert the array choix to string
     const joinedChoix=choix.join(' ');
-    
+    const [showCancelModal, setShowCancelModal] = useState(false); // Manage modal visibility
+
     useEffect(()=>{
         if(id){
             console.log("Participant ID:", id);
@@ -79,6 +82,23 @@ import { toast } from 'react-toastify';
           setChoix(choix.filter((item) => item !== value)); // Remove unchecked value
         }
       }
+
+      // Show the cancel confirmation modal
+  const handleCancel = () => {
+    setShowCancelModal(true);
+  };
+
+  // Confirm cancel and navigate back
+  const confirmCancel = () => {
+    setShowCancelModal(false);
+    navigate("/participant"); // Navigate back to the participant list
+  };
+
+  // Close modal without cancelling
+  const handleCloseModal = () => {
+    setShowCancelModal(false);
+  };
+
       function pageTitle(){
         if(id){
             return <h3 className=" text-center mb-2">Modifier un  participant</h3>;
@@ -158,8 +178,26 @@ import { toast } from 'react-toastify';
     <div className="col-md-12 mb-3 d-flex justify-content-center" >
   <button type="submit" className="btn btn-success" onClick={saveorupdateParticipant}
   style={{ width: '20%' }}>Enregistrer</button>
-   <button type="submit" className="btn btn-danger" onClick={saveorupdateParticipant}
+   <button type="submit" className="btn btn-danger" onClick={handleCancel}
   style={{ width: '20%' }}>Annuler</button>
+
+
+
+    {/* Cancel Confirmation Modal */}
+    <Modal show={showCancelModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmer</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Êtes-vous sûr de vouloir annuler ? Toutes les modifications non enregistrées seront perdues.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Non
+          </Button>
+          <Button variant="danger" onClick={confirmCancel}>
+            Oui
+          </Button>
+        </Modal.Footer>
+      </Modal>
 </div>
 
   </fieldset>
