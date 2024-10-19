@@ -51,7 +51,7 @@ const Login = () => {
            
               <form onSubmit={handleLogin}>
                 <div className="form-group">
-                <i className="fas fa-user"></i>
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
                   <input
                     type="text"
                     className="form-control"
@@ -64,7 +64,8 @@ const Login = () => {
                 </div>
                 <br />
                 <div className="form-group">
-                
+                <i className="fa fa-key"></i>
+              
                   <input
                     type="password"
                     className="form-control"
