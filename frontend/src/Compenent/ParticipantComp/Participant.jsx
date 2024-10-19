@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 const Participant = () => {
     const[participants,setParticipants]=useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredParticipants, setFilteredParticipants] = useState([]);
     const REST_API_BASE_URL="http://localhost:8080/api/participant";
     const listParticipant=()=>axios.get(REST_API_BASE_URL);
     const deleteParticipant=(participantid)=>axios.delete(REST_API_BASE_URL+'/'+participantid);
@@ -22,7 +21,7 @@ const Participant = () => {
    function getAllParticipant(){
       listParticipant().then((response)=>{
         setParticipants(response.data);
-        setFilteredParticipants(response.data); // Set initial state for filteredParticipants
+      
       
     }).catch(error=>(
       console.error(error)
@@ -51,7 +50,7 @@ const Participant = () => {
    
       // States to manage current page and rows per page
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(4); // Default 4 rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(participants.length); 
 
   // Calculate indices for slicing the list
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -73,23 +72,8 @@ const Participant = () => {
     setRowsPerPage(parseInt(e.target.value));
     setCurrentPage(1); // Reset to first page when rows per page changes
   };
-  useEffect(() => {
-    // Filter participants based on the search term
-    const results = participants.filter(participant => 
-      participant.nom.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredParticipants(results);
-  }, [searchTerm, participants]);
-  const handleSearch = () => {
-    // Search logic is handled by the useEffect that filters based on searchTerm
-    console.log("Searching for:", searchTerm);
-    console.log(filteredParticipants);
-  };
   
-
-
-   
-
+  
 
   return (
     <div >
@@ -101,7 +85,8 @@ const Participant = () => {
        <br />
        <div className="row mb-1 justify-content-between">
        <div className='col-auto'>
-       <button type="button" class="btn btn-primary mb-2" onClick={ajouter_participant}>Ajouter </button>
+       <button type="button" class="btn btn-primary mb-2" onClick={ajouter_participant}>
+       <i class="fa fa-user-plus"></i> </button>
        </div>
        
        <div className="col-auto">
@@ -120,11 +105,9 @@ const Participant = () => {
             <button
               id="search-button"
               type="button"
-              className="btn btn-primary"
-              onClick={handleSearch}
-             
+              className="btn btn-primary"  
             >
-              <i className="fas fa-search"></i>
+          <i class="fa fa-search" aria-hidden="true"></i>
             </button>
           </div>
           </div>
@@ -132,6 +115,7 @@ const Participant = () => {
       <div className="col-auto d-flex align-items-center"> {/* Use d-flex for horizontal alignment */}
         <label htmlFor="" className="me-1"><h6 className='page-item'>Lignes</h6></label>
         <select className="form-select" value={rowsPerPage} onChange={handleRowsChange}>
+        <option value={participants.length}>ALL</option>
           <option value={4}>4</option>
           <option value={5}>5</option>
           <option value={6}>6</option>
@@ -157,7 +141,12 @@ const Participant = () => {
         <tbody className='text-center'>
         {
     currentItems.length > 0 ? (
-      currentItems.map(participant => (
+      currentItems.filter((participant)=>{
+        return searchTerm.toLowerCase()==='' || 
+        participant.nom.toLowerCase().includes(searchTerm.toLowerCase())
+        ?participant
+        :participant.nom.toLowerCase().includes(searchTerm);
+       }).map(participant => (
         <tr key={participant.id}>
           <td>{participant.nom}</td>
           <td>{participant.prenom}</td>
@@ -165,13 +154,18 @@ const Participant = () => {
           <td>{participant.statu}</td>
           <td>{participant.choix}</td>
           <td>
-            <button type="button" className="btn btn-danger" onClick={() => supprimer_participant(participant.id)}>Supprimer</button>
-            <button type="button" className="btn btn-info" onClick={() => modifier_participant(participant.id)}>Modifier</button>
+            <button type="button" className="btn btn-danger" onClick={() => supprimer_participant(participant.id)}>     <i class="fa fa-trash-o"></i></button>
+            <button type="button" className="btn btn-info" onClick={() => modifier_participant(participant.id)}><i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <button type="button"  className="btn btn-secondary" onClick={() => modifier_participant(participant.id)}><i class="fa fa-floppy-o" aria-hidden="true"></i>
+            </button>
           </td>
         </tr>
       ))
     ) : (
+      
       <tr>
+        
         <td colSpan="6" className="text-center">Aucun participant trouvé</td>
       </tr>
     )
