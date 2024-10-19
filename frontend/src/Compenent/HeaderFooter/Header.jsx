@@ -17,27 +17,26 @@ import React from 'react'
                 <ul className="navbar-nav">
                 <li className="nav-item">
                     <a className="nav-link" href="#">
-                    <i class="fas fa-user-circle"></i>
-
+                    <i class="fa fa-home fa-fw"aria-hidden="true"></i>
                       Acceuil
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#">
-                    <i class="fas fa-user-circle"></i>
-
+                    <i class="fa fa-group"></i>
                       Participants
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#">
-                  
+                    <i class="fa fa-book" aria-hidden="true"></i>
                       Livres
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#">
-                
+                    <i class="fa fa-calendar"></i>
+                    
                       Evenements
                     </a>
                   </li>
