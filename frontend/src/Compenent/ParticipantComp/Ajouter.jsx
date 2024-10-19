@@ -157,7 +157,9 @@ import { toast } from 'react-toastify';
     <p>Inscriptions sélectionnées: {choix}</p>
     <div className="col-md-12 mb-3 d-flex justify-content-center" >
   <button type="submit" className="btn btn-success" onClick={saveorupdateParticipant}
-  style={{ width: '40%' }}>Enregistrer</button>
+  style={{ width: '20%' }}>Enregistrer</button>
+   <button type="submit" className="btn btn-danger" onClick={saveorupdateParticipant}
+  style={{ width: '20%' }}>Annuler</button>
 </div>
 
   </fieldset>
