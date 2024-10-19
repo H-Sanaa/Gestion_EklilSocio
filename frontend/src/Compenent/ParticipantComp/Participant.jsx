@@ -50,7 +50,7 @@ const Participant = () => {
    
       // States to manage current page and rows per page
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(participants.length); 
+  const [rowsPerPage, setRowsPerPage] = useState(4); 
 
   // Calculate indices for slicing the list
   const indexOfLastRow = currentPage * rowsPerPage;
