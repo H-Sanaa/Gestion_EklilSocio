@@ -12,12 +12,12 @@ const Login = () => {
   const navigate=useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault();  // Prevents the form from refreshing the page
     
     try {
-     const res=  await axios.post(`http://localhost:8080/api/login/${email}/${pdw_employee}`);
+     const res=  await axios.post(`http://localhost:8080/api/login/${email}/${pdw_employee}`) 
         if(res.status===200){
-        
+
           navigate("/dashboard");
         }else{
           alert("Email et mot de passe incorrecte");
