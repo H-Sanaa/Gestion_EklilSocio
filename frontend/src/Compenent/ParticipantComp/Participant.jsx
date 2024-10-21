@@ -1,9 +1,10 @@
 
-import React ,{useState,useEffect} from 'react';
+import React ,{useRef,useState,useEffect} from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { useReactToPrint } from 'react-to-print';
+import Header from '../HeaderFooter/Header';
 const Participant = () => {
     const[participants,setParticipants]=useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -11,6 +12,8 @@ const Participant = () => {
     const listParticipant=()=>axios.get(REST_API_BASE_URL);
     const deleteParticipant=(participantid)=>axios.delete(REST_API_BASE_URL+'/'+participantid);
     const navigate=useNavigate();
+    const componentRef=useRef();
+   
   
    useEffect(()=>{
     
@@ -72,12 +75,25 @@ const Participant = () => {
     setRowsPerPage(parseInt(e.target.value));
     setCurrentPage(1); // Reset to first page when rows per page changes
   };
+    //PDF FILE 
+    const handlePrint = useReactToPrint({
+      content: () => componentRef.current, // Define the content to print
+      documentTitle: 'Reçu D\'inscription',
+    });
+
+    // PDF Section to print
+    const PrintableParticipants = React.forwardRef((props, ref) => (
+      <div ref={ref}>
+        
+        </div>
+
+    ));
   
   
 
   return (
     <div >
-         
+         <Header/>
        <br />
         <div className='container'>
        <h3  className='text-center'>Liste des Participants </h3>
@@ -155,9 +171,10 @@ const Participant = () => {
           <td>{participant.choix}</td>
           <td>
             <button type="button" className="btn btn-danger" onClick={() => supprimer_participant(participant.id)}>     <i class="fa fa-trash-o"></i></button>
-            <button type="button" className="btn btn-info" onClick={() => modifier_participant(participant.id)}><i class="fa fa-pencil" aria-hidden="true"></i>
+            <button type="button" className="btn btn-success" onClick={() => modifier_participant(participant.id)}><i class="fa fa-pencil" aria-hidden="true"></i>
             </button>
-            <button type="button"  className="btn btn-secondary" onClick={() => modifier_participant(participant.id)}><i class="fa fa-floppy-o" aria-hidden="true"></i>
+             
+            <button type="button"  className="btn btn-secondary" onClick={handlePrint}><i class="fa fa-floppy-o" aria-hidden="true"></i>
             </button>
           </td>
         </tr>
