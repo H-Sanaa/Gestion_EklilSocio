@@ -1,4 +1,5 @@
-import React  from "react";
+import React ,{useState,useEffect} from "react";
+import axios from 'axios';
 import "./Dashboard.css";
 import { Link } from "react-router-dom";
 import logo from "../Assets/logo.png"
@@ -8,9 +9,35 @@ import evenementimg from "../Assets/eve.webp";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import livre from "../LivreComp/Livre";
 import evenement from "../EvenementComp/Evenement";
+import Header from '../HeaderFooter/Header';
 
 const DashboardCompenent = () => {
+    const[nom_employee,setNom_employee]=useState('');
+    const[message,setMessage]=useState('');
+  
+    const REST_API_BASE_URL="http://localhost:8080/api";
+    const fetchDashboard=async()=>{
+        try{
+            const response=await axios.get(`${ REST_API_BASE_URL}/dash`)
+            setMessage(response.data);
+            console.log(response.data);
+            if(response.data.startWith('Bienvenu')){
+                const employeeNom=response.data.split(' ')[1];
+                setNom_employee(employeeNom);
+            }
+        }catch(error){
+            setMessage("S'il vous plait faire l'authentification");
+        }
+    };
+        // Call fetchDashboard when the component mounts
+    useEffect(() => {
+        fetchDashboard();
+    }, []);
+
   return (
+    <>
+    <Header/>
+   
     <div className="container">
      
         {/*
@@ -25,7 +52,7 @@ const DashboardCompenent = () => {
             <h5 className="mt-1 mb-2 pb-1" >
                 Espace d'assistant administratif      فضاء مساعد اداري
             </h5><br />
-            <h4>Bienvenu </h4>
+            <h4>Bienvenu {nom_employee}</h4>
           </div>
           <br />
           <div className="container mt-5" id="card">
@@ -95,7 +122,7 @@ const DashboardCompenent = () => {
            
           
       </div>
-      
+      </>
     
   );
 };
