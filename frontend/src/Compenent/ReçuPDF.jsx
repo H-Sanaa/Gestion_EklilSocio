@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./Assets/logo.png";
+
 import {
   Page,
   Text,
@@ -12,6 +12,8 @@ import {
 // Styles for the PDF
 const styles = StyleSheet.create({
   page: {
+    position:"relative",
+    top:"30px",
     flexDirection: "column",
     padding: 10,
     width: "100%",
@@ -26,26 +28,39 @@ const styles = StyleSheet.create({
   },
   addressSection: {
     width: "50%", // More space for the address on the left
-    fontSize: 12,
+    fontSize: 10,
     color:"gray",
   },
   logoSection: {
-    width: "20%", // Less space for the logo on the right
+    width: "30%", // Less space for the logo on the right
     display: "flex",
     justifyContent: "flex-end",
   },
-  Image: {
-    width: "90px", // Adjust size of the logo
-    height: "auto",
+ 
+  section:{
+    position:"relative",
+    top:"25px",
+
   },
-  text: {
+   text0: {
+    fontSize: 20,
+    marginBottom: 5,
+    fontStyle:"italic",
+   
+    
+  },
+  text1: {
     fontSize: 10,
     marginBottom: 5,
+    fontStyle:"noemale",
+   
+    
   },
   text2: {
-    fontSize: 10,
+    fontSize: 18,
     marginBottom: 5,
     textDecoration: "underline",
+    fontStyle:"oblique",
   },
   table: {
     width: "100%",
@@ -65,18 +80,21 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 8,
     fontSize: 11,
-    color: "#424242",
-    textTransform: "capitalize",
+    
   },
   biggerTableCell: {
+    flex: 1,
+    padding: 8,
+    fontSize: 11,
+    color: "#424242",
+    textTransform: "capitalize",
     backgroundColor: "#DAF7A6",
     fontWeight: "bold",
   },
   colspan3: {
-    flex: 2 * 2 + 8.7,
-    borderRight: "1px solid #000",
-    borderBottom: "1px solid #000",
+    flex: 2 * 2  + 8.7,
     padding: 4,
+    textAlign:"right",
   },
 });
 
@@ -97,14 +115,14 @@ const ReçuPDF = ({ nom, prenom, email, statu, choix }) => {
             <Text>Tél : 05-39-96-59-30</Text>
           </View>
           <View style={styles.logoSection}>
-            <Image style={styles.Image} src={logo} />
+            
           
-          <Text style={styles.text}>Iklil Tetouan Cultural Center</Text>
+          <Text style={styles.text0}>Iklil_Center</Text>
        
           </View>
         </View>
 
-      
+        <View style={styles.section}>
         <View style={{ alignItems: "center" }}>
           <Text style={styles.text2}>Reçu d'inscription</Text>
         </View>
@@ -112,42 +130,46 @@ const ReçuPDF = ({ nom, prenom, email, statu, choix }) => {
         <View style={styles.table}>
           <View style={styles.tableRow}>
             <View style={styles.biggerTableCell}>
-              <Text style={styles.text}>Nom Complet</Text>
+              <Text style={styles.text1}>Nom Complet</Text>
             </View>
             <View style={styles.biggerTableCell}>
-              <Text style={styles.text}>Email</Text>
+              <Text style={styles.text1}>Email</Text>
             </View>
             <View style={styles.biggerTableCell}>
-              <Text style={styles.text}>Choix d'inscription</Text>
+              <Text style={styles.text1}>Choix d'inscription</Text>
             </View>
             <View style={styles.biggerTableCell}>
-              <Text style={styles.text}>Statut du participant</Text>
+              <Text style={styles.text1}>Statut du participant</Text>
             </View>
           </View>
 
           <View style={styles.tableRow}>
             <View style={styles.tableCell}>
-              <Text style={styles.text}>{nom + " " + prenom}</Text>
+              <Text style={styles.text1}>{nom + " " + prenom}</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.text}>{email}</Text>
+              <Text style={styles.text1}>{email}</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.text}>{choix}</Text>
+              <Text style={styles.text1}>{choix}</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.text}>{statu}</Text>
+              <Text style={styles.text1}>{statu}</Text>
             </View>
           </View>
 
           <View style={styles.tableRow}>
+         
             <View style={styles.colspan3}>
-              <Text style={styles.text}>Prix à payer</Text>
+              <Text style={styles.text1}>Prix à payer :</Text>
             </View>
-            <View style={styles.colspan3}>
-              <Text style={styles.text}>{prix_payer(statu)}</Text>
+            <View style={styles.tableCell}>
+              <Text style={styles.text1}>{prix_payer(statu)}DH</Text>
             </View>
+           
           </View>
+        </View>
+        <Text style={styles.text1}>Note:L'inscription </Text>
         </View>
       </Page>
     </Document>
