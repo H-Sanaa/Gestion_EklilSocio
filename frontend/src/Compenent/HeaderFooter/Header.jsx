@@ -37,7 +37,7 @@ import { Modal, Button } from 'react-bootstrap';
           <div className="container-fluid">
             {/* Titre à gauche */}
             <a className="navbar-brand" href="#">
-              Socio_Eklil
+              Socio_Iklil
             </a>
 
             {/* Nav au centre */}
