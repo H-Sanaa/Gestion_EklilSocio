@@ -1,10 +1,12 @@
 
-import React ,{useRef,useState,useEffect} from 'react';
+import React ,{useState,useEffect} from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useReactToPrint } from 'react-to-print';
 import Header from '../HeaderFooter/Header';
+import Recu from '../ReçuPDF';
+import {  PDFDownloadLink } from '@react-pdf/renderer';
+
 const Participant = () => {
     const[participants,setParticipants]=useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -12,8 +14,6 @@ const Participant = () => {
     const listParticipant=()=>axios.get(REST_API_BASE_URL);
     const deleteParticipant=(participantid)=>axios.delete(REST_API_BASE_URL+'/'+participantid);
     const navigate=useNavigate();
-    const componentRef=useRef();
-   
   
    useEffect(()=>{
     
@@ -75,20 +75,8 @@ const Participant = () => {
     setRowsPerPage(parseInt(e.target.value));
     setCurrentPage(1); // Reset to first page when rows per page changes
   };
-    //PDF FILE 
-    const handlePrint = useReactToPrint({
-      content: () => componentRef.current, // Define the content to print
-      documentTitle: 'Reçu D\'inscription',
-    });
-
-    // PDF Section to print
-    const PrintableParticipants = React.forwardRef((props, ref) => (
-      <div ref={ref}>
-        
-        </div>
-
-    ));
-  
+ 
+   
   
 
   return (
@@ -173,9 +161,18 @@ const Participant = () => {
             <button type="button" className="btn btn-danger" onClick={() => supprimer_participant(participant.id)}>     <i class="fa fa-trash-o"></i></button>
             <button type="button" className="btn btn-success" onClick={() => modifier_participant(participant.id)}><i class="fa fa-pencil" aria-hidden="true"></i>
             </button>
-             
-            <button type="button"  className="btn btn-secondary" onClick={handlePrint}><i class="fa fa-floppy-o" aria-hidden="true"></i>
-            </button>
+               {/* Bouton pour générer le PDF */}
+              
+      <PDFDownloadLink
+        document={<Recu nom={participant.nom} prenom={participant.prenom} email={participant.email} statu={participant.statu} choix={participant.choix} />}
+        fileName="reçu_inscription.pdf"
+      >
+        {({ loading }) => (
+          <button type="button" className="btn btn-secondary">
+            <i className="fa fa-floppy-o" aria-hidden="true"></i> {loading}
+          </button>
+        )}
+      </PDFDownloadLink>
           </td>
         </tr>
       ))
@@ -187,23 +184,7 @@ const Participant = () => {
       </tr>
     )
   }
-          {/* {
-            currentItems.filter(()=>{
-              return filteredParticipants;
-            }).map(participant=>
-              <tr key={participant.id}>
-                <td>{participant.nom}</td>
-                <td>{participant.prenom}</td>
-                <td>{participant.email}</td>
-                <td>{participant.statu}</td>
-                <td>{participant.choix}</td>
-                <td>
-                <button type="button" class="btn btn-danger " onClick={()=>supprimer_participant(participant.id)}>Supprimer </button>
-                <button type="button" class="btn btn-info " onClick={()=>modifier_participant(participant.id)}>Modifier </button>
-                </td>
-              </tr>
-            )
-          } */}
+         
 
         </tbody>
 
