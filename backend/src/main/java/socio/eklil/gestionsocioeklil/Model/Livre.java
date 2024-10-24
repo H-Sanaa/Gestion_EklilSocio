@@ -32,6 +32,9 @@ public class Livre {
     @Lob // Large Object annotation for binary data
     private byte[] photo;
 
+    @Column (name ="pix")
+    private Long prix;
+
 
     public Long getId_livre(){
         return this.id_livre;
@@ -60,6 +63,13 @@ public class Livre {
     }
     public void setPhoto(byte[] photo){
         this.photo=photo;
+    }
+
+    public Long getPrix(){
+        return this.prix;
+    }
+    public void setPrix(Long prix){
+        this.prix=prix;
     }
 
 
