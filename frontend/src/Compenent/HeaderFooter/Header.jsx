@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
-
+import { Link } from "react-router-dom";
  const Header = () => {
     const REST_API_BASE_URL="http://localhost:8080/api";
     const navigate=useNavigate();
@@ -47,13 +47,13 @@ import { Modal, Button } from 'react-bootstrap';
                 <li className="nav-item">
                     <a className="nav-link" href="#">
                     <i class="fa fa-home fa-fw"aria-hidden="true"></i>
-                      Acceuil
+                    <Link to="/dashboard" >  Acceuil </Link>
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                  <a className="nav-link" href="#">
                     <i class="fa fa-group"></i>
-                      Participants
+                    <Link to="/participant" > Participants </Link>
                     </a>
                   </li>
                   <li className="nav-item">
