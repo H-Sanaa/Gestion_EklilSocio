@@ -22,7 +22,8 @@ public class LivreMapper {
             livreDto.getLivre_code(),
             livreDto.getNom_auteur(),
             livreDto.getNom_livre(),
-            livreDto.getPhoto()
+            livreDto.getPhoto(),
+           null
 
 
         );
