@@ -8,6 +8,7 @@ import Login from './Compenent/Logincompenent/Login';
 import Dashboard from './Compenent/DashbordComp/Dashboard'
 import Participant from './Compenent/ParticipantComp/Participant';
 import  Ajouter  from './Compenent/ParticipantComp/Ajouter';
+import Livre from './Compenent/LivreComp/Livre';
 
 import Footer from './Compenent/HeaderFooter/Footer';
 
@@ -31,6 +32,7 @@ function App() {
         <Route path='/participant' element={<Participant/>}/>
         <Route path='/ajouter' element={<Ajouter/>}/>
         <Route path='/modifier/:id' element={<Ajouter/>}/>
+        <Route path='/livre' element={<Livre/>}/>
         
 
 
