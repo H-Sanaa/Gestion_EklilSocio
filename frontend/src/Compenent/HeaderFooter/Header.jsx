@@ -59,7 +59,7 @@ import { Link } from "react-router-dom";
                   <li className="nav-item">
                     <a className="nav-link" href="#">
                     <i class="fa fa-book" aria-hidden="true"></i>
-                      Livres
+                    <Link to="/livre" >  Livres </Link>
                     </a>
                   </li>
                   <li className="nav-item">
