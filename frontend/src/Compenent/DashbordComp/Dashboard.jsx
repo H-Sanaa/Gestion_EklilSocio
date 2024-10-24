@@ -87,7 +87,7 @@ const DashboardCompenent = () => {
                             <p className="card-text">
                              Liste des livres
                             </p>
-                            <Link to="" ><button className="btn btn-primary"> Consulter</button></Link>
+                            <Link to="/livre" ><button className="btn btn-primary"> Consulter</button></Link>
                           
                         </div>
                     </div>
