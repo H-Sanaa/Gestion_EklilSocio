@@ -2,6 +2,7 @@ package socio.eklil.gestionsocioeklil.Model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -27,6 +28,9 @@ public class Livre {
 
     @Column(name="nom_livre")
     private String nom_livre;
+   // For storing the image
+    @Lob // Large Object annotation for binary data
+    private byte[] photo;
 
 
     public Long getId_livre(){
@@ -50,6 +54,12 @@ public class Livre {
     }
     public void setNom_livre(String nom_livre){
         this.nom_livre=nom_livre;
+    }
+    public byte[] getPhoto(){
+        return this.photo;
+    }
+    public void setPhoto(byte[] photo){
+        this.photo=photo;
     }
 
 
