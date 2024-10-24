@@ -7,8 +7,7 @@ import livreimg from"../Assets/livre.webp";
 import participantimg from "../Assets/participant.webp";
 import evenementimg from "../Assets/eve.webp";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import livre from "../LivreComp/Livre";
-import evenement from "../EvenementComp/Evenement";
+
 import Header from '../HeaderFooter/Header';
 
 const DashboardCompenent = () => {
@@ -33,6 +32,7 @@ const DashboardCompenent = () => {
     useEffect(() => {
         fetchDashboard();
     }, []);
+    
 
   return (
     <>
@@ -58,21 +58,18 @@ const DashboardCompenent = () => {
           <div className="container mt-5" id="card">
             <div className="row">
                 {/* Card 1 */}
-                <div className="col-md-4">
+                <div className="col-md-4" tabindex="0">
                     <div className="card animated-card">
                         <img
                             src={participantimg}
                             className="card-img-top"
                             alt="Card 1"
                         />
-                        <div className="card-body">
-                            
+                        <div className="card-body" >
                             <p className="card-text">
                                 Liste des participants
                             </p>
                             <Link to="/participant" ><button className="btn btn-primary"> Consulter</button></Link>
-                            
-                           
                         </div>
                     </div>
                 </div>
@@ -90,9 +87,8 @@ const DashboardCompenent = () => {
                             <p className="card-text">
                              Liste des livres
                             </p>
-                            <a href={livre} className="btn btn-primary">
-                                Consulter 
-                            </a>
+                            <Link to="" ><button className="btn btn-primary"> Consulter</button></Link>
+                          
                         </div>
                     </div>
                 </div>
@@ -110,9 +106,8 @@ const DashboardCompenent = () => {
                             <p className="card-text">
                                 Liste des évènements 
                             </p>
-                            <a href={evenement} className="btn btn-primary">
-                             Consulter
-                            </a>
+                            <Link to="" ><button className="btn btn-primary"> Consulter</button></Link>
+                           
                         </div>
                     </div>
                 </div>
