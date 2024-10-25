@@ -32,7 +32,7 @@ public class Livre {
     @Lob // Large Object annotation for binary data
     private byte[] photo;
 
-    @Column (name ="pix")
+    @Column (name ="prix")
     private Long prix;
 
     @Column (name="annee")
