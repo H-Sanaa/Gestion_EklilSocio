@@ -159,7 +159,7 @@ const Participant = () => {
           <td>{participant.choix}</td>
           <td>
             <button type="button" className="btn btn-danger" onClick={() => supprimer_participant(participant.id)}>     <i class="fa fa-trash-o"></i></button>
-            <button type="button" className="btn btn-success" onClick={() => modifier_participant(participant.id)}><i class="fa fa-pencil" aria-hidden="true"></i>
+            <button type="button" className="btn btn-warning" onClick={() => modifier_participant(participant.id)}><i class="fa fa-pencil" aria-hidden="true"></i>
             </button>
                {/* Bouton pour générer le PDF */}
               
