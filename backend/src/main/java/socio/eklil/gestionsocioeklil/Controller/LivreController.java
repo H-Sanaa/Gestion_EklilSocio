@@ -1,9 +1,12 @@
 package socio.eklil.gestionsocioeklil.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,15 @@ public class LivreController {
         LivreDto saveLivre=livreService.createLivre(livreDto);
         return new ResponseEntity<>(saveLivre,HttpStatus.CREATED);
     }
+
+    //Build get all the books REST API
+    @GetMapping
+    public ResponseEntity<List<LivreDto>> getAllLivre(){
+        List<LivreDto> livres=livreService.getAllLivre();
+        return ResponseEntity.ok(livres);
+
+    }
+
 
 
 
