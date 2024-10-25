@@ -1,5 +1,8 @@
 package socio.eklil.gestionsocioeklil.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,12 @@ public class LivreServiceImp implements LivreService  {
       Livre livre=LivreMapper.mapToLivre(livreDto);
      Livre saveLivre=livreRepository.save(livre);
      return LivreMapper.mapToLivreDto(saveLivre);
+    }
+
+    @Override
+    public List<LivreDto> getAllLivre() {
+     List<Livre> livres=livreRepository.findAll();
+     return livres.stream().map((livre)->LivreMapper.mapToLivreDto(livre)).collect(Collectors.toList());
     }
 
 }
