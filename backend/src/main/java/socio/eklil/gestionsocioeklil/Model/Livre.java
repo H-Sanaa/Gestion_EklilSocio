@@ -35,6 +35,9 @@ public class Livre {
     @Column (name ="pix")
     private Long prix;
 
+    @Column (name="annee")
+    private Long annee;
+
 
     public Long getId_livre(){
         return this.id_livre;
@@ -70,6 +73,13 @@ public class Livre {
     }
     public void setPrix(Long prix){
         this.prix=prix;
+    }
+
+    public Long getAnnee(){
+        return this.annee;
+    }
+    public void setAnee(Long annee){
+        this.annee=annee;
     }
 
 
