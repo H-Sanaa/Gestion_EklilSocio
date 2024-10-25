@@ -117,7 +117,8 @@ import { Modal, Button } from 'react-bootstrap';
       }
     <br/>
     <div className="col-md-6 mb-3">
-    <Link to='/participant'> <button type="button" class="btn btn-secondary">Retour</button></Link>
+    <Link to='/participant'> <button type="button" class="btn btn-secondary"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </button></Link>
       </div>
   
   
