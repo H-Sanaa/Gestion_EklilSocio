@@ -12,6 +12,7 @@ public class LivreDto {
     private String nom_auteur;
     private String nom_livre;
     private byte[] photo;
+    private Long annee;
 
     
     public Long getId_livre(){
@@ -41,6 +42,12 @@ public class LivreDto {
     }
     public void setPhoto(byte[] photo){
         this.photo=photo;
+    }
+    public Long getAnnee(){
+        return this.annee;
+    }
+    public void setAnee(Long annee){
+        this.annee=annee;
     }
 
 
