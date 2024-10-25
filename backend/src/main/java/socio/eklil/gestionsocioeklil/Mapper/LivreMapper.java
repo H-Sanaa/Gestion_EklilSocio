@@ -11,7 +11,8 @@ public class LivreMapper {
          livre.getLivre_code(),
          livre.getNom_auteur(),
          livre.getNom_livre(),
-         livre.getPhoto()
+         livre.getPhoto(),
+         livre.getAnnee()
 
         );
     }
@@ -23,7 +24,8 @@ public class LivreMapper {
             livreDto.getNom_auteur(),
             livreDto.getNom_livre(),
             livreDto.getPhoto(),
-           null
+           null,
+           livreDto.getAnnee()
 
 
         );
