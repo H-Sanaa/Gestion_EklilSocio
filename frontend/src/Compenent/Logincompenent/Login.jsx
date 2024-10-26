@@ -43,7 +43,7 @@ const Login = () => {
           </div>
           <br />
         <div className="col-md-4">
-          <div className="card">
+          <div className="card1">
             <div className="card-body">
             
               <h3 className="card-title text-center">Authentification</h3>
@@ -78,10 +78,10 @@ const Login = () => {
                 </div>
                 <br />
                 <h6>vous n'etes pas encore enregistré?  <Link to="/register" >Crer un compte </Link></h6>
-              
+                <div className="form-group">
 
-                <button id="button" className="btn  btn-block  col-md-12" type="submit">Connexion  </button>
-                      
+                <button  className="btn " type="submit">Connexion  </button>
+                </div>  
               </form>
             </div>
           </div>
