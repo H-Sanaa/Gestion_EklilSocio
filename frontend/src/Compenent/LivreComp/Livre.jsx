@@ -22,7 +22,7 @@ const Livre = () => {
   const navigate=useNavigate();
 
 
-  //api
+  //REST API
   const REST_API_BASE_URL = "http://localhost:8080/api/livre";
   const listLivre = () => axios.get(REST_API_BASE_URL);
   const createLivre=(livre)=>axios.post(REST_API_BASE_URL+"/ajouter",livre);
