@@ -3,9 +3,11 @@ import { Link,useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Modal, Button } from 'react-bootstrap';
+import Header from '../HeaderFooter/Header';
+
 
  const Ajouter = () => {
-
+ 
     //connect to my REST API to create a participant
     const REST_API_BASE_URL="http://localhost:8080/api/participant/ajouter";
     const createParticipant=(participant)=>axios.post(REST_API_BASE_URL,participant);
@@ -54,8 +56,8 @@ import { Modal, Button } from 'react-bootstrap';
                 console.log(response.data);
                 navigate('/participant');
                 toast.success("Participant modifer avec succès !",{style:{
-                  backgroundColor: "#98FB98", // Couleur de fond (vert)
-                  color: "#ffffff",           // Couleur du texte (blanc)
+                  backgroundColor: "green", // Couleur de fond (vert)
+                  color: "black",           // Couleur du texte (blanc)
                 }});
             }).catch(error=>(
                 console.error(error)
@@ -67,8 +69,8 @@ import { Modal, Button } from 'react-bootstrap';
             console.log(response.data);
             navigate('/participant');
             toast.success("Participant ajouter avec succès !",{style:{
-              backgroundColor: "#98FB98", // Couleur de fond (vert)
-              color: "#ffffff",           // Couleur du texte (blanc)
+              backgroundColor: "green", // Couleur de fond (vert)
+              color: "#black",           // Couleur du texte (blanc)
             }});
         }).catch(error=>(
             console.error(error)
@@ -109,7 +111,9 @@ import { Modal, Button } from 'react-bootstrap';
       }
 
   return (
-    
+    <>
+      <Header/>
+
     <fieldset className="container">
         <br />
        {
@@ -120,8 +124,6 @@ import { Modal, Button } from 'react-bootstrap';
     <Link to='/participant'> <button type="button" class="btn btn-secondary"><i class="fa fa-arrow-left" aria-hidden="true"></i>
     </button></Link>
       </div>
-  
-  
     <div className="row">
       <div className="col-md-6 mb-3">
         <label htmlFor="nom" className="form-label">Nom*:</label>
@@ -202,7 +204,7 @@ import { Modal, Button } from 'react-bootstrap';
 </div>
 
   </fieldset>
-  
+  </>
         
     
   )
