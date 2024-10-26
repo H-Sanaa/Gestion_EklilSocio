@@ -42,7 +42,7 @@ const Register =()=>{
           </div>
           <br />
         <div className="col-md-4">
-          <div className="card">
+          <div className="card1">
           <h3 className="card-title text-center">Enregistrer</h3>
             <div className="card-body">
               {message && <div className="alert alert-info">{message}</div>}
@@ -105,7 +105,7 @@ const Register =()=>{
                 <h6>vous avez déjà enregister ?<Link to="/authentification" >Authentifier</Link></h6>
                 
                 
-                <button id="button" className="btn  btn-block  col-md-12" type="submit">Creer  </button>
+                <button  className="btn " type="submit">Creer  </button>
                       
               </form>
             </div>
