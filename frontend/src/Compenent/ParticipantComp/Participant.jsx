@@ -8,6 +8,7 @@ import Recu from '../ReçuPDF';
 import {  PDFDownloadLink } from '@react-pdf/renderer';
 
 const Participant = () => {
+  
     const[participants,setParticipants]=useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const REST_API_BASE_URL="http://localhost:8080/api/participant";
@@ -33,6 +34,8 @@ const Participant = () => {
    function ajouter_participant(){
     navigate("/ajouter");
    }
+  
+  
    function supprimer_participant(id){
       deleteParticipant(id).then((response)=>{
         toast.success("Participant supprimé avec succès",{style:{ color: "red"}});
@@ -91,6 +94,8 @@ const Participant = () => {
        <div className='col-auto'>
        <button type="button" class="btn btn-primary mb-2" onClick={ajouter_participant}>
        <i class="fa fa-user-plus"></i> </button>
+       
+      
        </div>
        
        <div className="col-auto">
