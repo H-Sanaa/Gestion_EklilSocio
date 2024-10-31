@@ -2,12 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    /* justify-content: center; */
+   
   }
   
   .livre-card {
     position: relative;
-    width: 200px;
+    width: 170px;
     height: 300px;
     overflow: hidden;
     border-radius: 8px;
@@ -49,6 +49,11 @@
     justify-content: center;
     opacity: 0;
     transition: opacity 0.2s;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 8px; /* Adjust space between buttons as needed */
   }
   
   .livre-card:hover .livre-hover-info {
