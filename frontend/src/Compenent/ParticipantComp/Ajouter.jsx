@@ -56,8 +56,8 @@ import Header from '../HeaderFooter/Header';
                 console.log(response.data);
                 navigate('/participant');
                 toast.success("Participant modifer avec succès !",{style:{
-                  backgroundColor: "green", // Couleur de fond (vert)
-                  color: "black",           // Couleur du texte (blanc)
+                  backgroundColor: "white", // Couleur de fond (vert)
+                  color: "green",           // Couleur du texte (blanc)
                 }});
             }).catch(error=>(
                 console.error(error)
@@ -69,8 +69,8 @@ import Header from '../HeaderFooter/Header';
             console.log(response.data);
             navigate('/participant');
             toast.success("Participant ajouter avec succès !",{style:{
-              backgroundColor: "green", // Couleur de fond (vert)
-              color: "#black",           // Couleur du texte (blanc)
+              backgroundColor: "white", // Couleur de fond (vert)
+              color: "green",           // Couleur du texte (blanc)
             }});
         }).catch(error=>(
             console.error(error)
