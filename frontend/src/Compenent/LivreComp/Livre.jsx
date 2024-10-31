@@ -11,10 +11,11 @@ import {
   Upload,
   InputNumber,
   Row,
-  Col,
+  Col,Select
   
 } from "antd";
 import { SearchOutlined } from '@ant-design/icons';
+import {  PDFDownloadLink } from '@react-pdf/renderer';
 import "./Livre.css";
 
 const Livre = () => {
@@ -23,6 +24,7 @@ const Livre = () => {
   const REST_API_BASE_URL = "http://localhost:8080/api/livre";
   const [livres, setLivres] = useState([]);
   const [visible, setVisible] = useState(false);
+  const [isPrintModalVisible, setIsPrintModalVisible] = useState(false);
   const [form] = Form.useForm();
  
   const [currentId, setCurrentId] = useState(null); // Track if we are editing
@@ -46,7 +48,6 @@ const Livre = () => {
   useEffect(() => {
     fetchAllLivres();
   }, [fetchAllLivres]);
-
 
   //show model 
   const showModal = (livreId) => {
@@ -111,7 +112,6 @@ const Livre = () => {
         console.error(error);
       });
   };
-
   
   const handleCancel = () => {
     setVisible(false);
@@ -153,6 +153,22 @@ const Livre = () => {
     return false;
   };
 
+  const OpenPrint=()=>{
+    setIsPrintModalVisible(true);
+
+  }
+  const PrintCancel = () => {
+    setIsPrintModalVisible(false);
+   
+  };
+
+  const PrintOk = () => {
+    setIsPrintModalVisible(false);
+    // form.resetFields();
+     
+     
+  };
+
   return (
     <>
       <Header />
@@ -165,7 +181,7 @@ const Livre = () => {
         <Button type="primary" onClick={() => showModal()}>
           <i className="fa fa-plus"></i>
         </Button>
-        <Button type="success"  style={{background:"MediumSeaGreen",gap:"4px"}}>
+        <Button type="success" onClick={() => OpenPrint()} style={{background:"MediumSeaGreen",gap:"4px"}}>
           <i className="fa fa-floppy-o"></i>
         </Button>
         </div>
@@ -256,6 +272,45 @@ const Livre = () => {
               </div>
             </div>
           ))}
+
+          <Modal
+           title={<div style={{ textAlign: "center", color: "#22313f" }}>Selectionner l'option que vous souhaitez d'imprimer </div>}
+           visible={isPrintModalVisible}
+           onOk={PrintOk}
+           onCancel={PrintCancel}
+           okText="Continuer"
+           cancelText="Annuler"
+           okButtonProps={{ style: { backgroundColor: 'white', color: 'DodgerBlue', border: 'dashed' } }}
+           cancelButtonProps={{ style: { backgroundColor: 'white', color: 'red', border: 'dashed' } }}>
+            <Form  layout="vertical">
+            <Row gutter={16}>
+            <Col span={12}>
+            <Form.Item label="" name="" >
+                  
+              
+             <Select rules={[{ required: true, message: "Entrer le code du livreSelectionner un choix" }]}>
+                <Select.Option value="all">Tous</Select.Option>
+                <Select.Option value="2023">2023</Select.Option>
+                <Select.Option value="2024">2024</Select.Option>
+              </Select>
+              </Form.Item>
+              
+              </Col>
+              </Row>
+
+            </Form>
+
+          </Modal>
+           <PDFDownloadLink
+        // document={<Recu nom={livre.nom} prenom={livre.prenom} email={livre.email} statu={livre.statu} choix={livre.choix} />}
+        // fileName="reçu_inscription.pdf"
+      >
+        {({ loading }) => (
+          <button type="button" className="btn btn-secondary">
+            <i className="fa fa-floppy-o" aria-hidden="true"></i> {loading}
+          </button>
+        )}
+      </PDFDownloadLink>
         </div>
       </div>
     </>
