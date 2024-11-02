@@ -13,6 +13,7 @@ public class LivreDto {
     private String nom_livre;
     private String photo;
     private Long annee;
+    private Long prix;
 
     
     public Long getId_livre(){
@@ -48,6 +49,12 @@ public class LivreDto {
     }
     public void setAnee(Long annee){
         this.annee=annee;
+    }
+    public Long getPrix(){
+        return this.prix;
+    }
+    public void setPnee(Long prix){
+        this.prix=annee;
     }
 
 
