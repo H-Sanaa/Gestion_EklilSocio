@@ -18,7 +18,8 @@ public class LivreMapper {
          livre.getNom_auteur(),
          livre.getNom_livre(),
          photoBase64,
-         livre.getAnnee()
+         livre.getAnnee(),
+         livre.getPrix()
 
         );
     }
@@ -32,7 +33,7 @@ public class LivreMapper {
             livreDto.getNom_auteur(),
             livreDto.getNom_livre(),
            photoBytes,
-           null,
+            livreDto.getPrix(),
            livreDto.getAnnee()
 
 
